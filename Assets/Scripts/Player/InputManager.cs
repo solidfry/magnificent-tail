@@ -1,14 +1,14 @@
 
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class InputManager : MonoBehaviour
 {
     private PlayerControls _playerControls;
 
-    public Vector2 movementInput;
-    public float accelerate;
-    public Vector2 directionInput;
-    
+    public float thrust;
+    public float roll;
+    public Vector2 pitchYaw;
     
     private void OnEnable()
     {
@@ -16,29 +16,24 @@ public class InputManager : MonoBehaviour
         {
             _playerControls = new PlayerControls();
             _playerControls.Flight.Enable();
-            _playerControls.Flight.Movement.performed += i => movementInput = i.ReadValue<Vector2>();
-            _playerControls.Flight.Yaw.performed += i => directionInput = i.ReadValue<Vector2>();
         }
-        
     }
     
-    private void OnDisable()
-    {
-        _playerControls.Disable();
-    }
+    private void OnDisable() => _playerControls.Disable();
     
-    public void HandleAllInputs()
-    {
-        HandleMovementInput();
-    }
-    
-   private void HandleMovementInput()
-    {
-        accelerate = movementInput.y;
-        
-    }
-
+   public void OnThrust(InputAction.CallbackContext context)
+   {
+       thrust = context.ReadValue<float>();
+   }
    
-    
-  
+   public void OnLookMovement(InputAction.CallbackContext context)
+   {
+       pitchYaw = context.ReadValue<Vector2>();
+   }
+   
+   public void OnRoll (InputAction.CallbackContext context)
+   {
+       roll = context.ReadValue<float>();
+   }
+   
 }

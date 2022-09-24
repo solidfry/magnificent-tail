@@ -5,53 +5,57 @@ namespace Player
     public class Movement : MonoBehaviour
     {
         private InputManager _inputManager;
-        
-        private Vector3 _moveDirection;
-        public float speed = 2f;
-        public float rotationSpeed = 15f;
-        private Rigidbody _playerRigidbody;
+
+        [Header("Handling Settings")] [SerializeField]
+        private float yawTorque = 500f, pitchTorque = 1000f, rollTorque = 1000f, thrust = 100f;
+        private float _glide = 0;
+        private Camera mainCam;
+        private Rigidbody _rb;
     
         private void Awake()
         {
+            mainCam = Camera.main;
             _inputManager = GetComponent<InputManager>();
-            _playerRigidbody = GetComponent<Rigidbody>();
+            _rb = GetComponent<Rigidbody>();
         }
 
         public void HandleAllMovement()
         {
-            HandleAcceleration();
+            _rb.AddRelativeForce(Vector3.forward * _inputManager.thrust);
+            HandleThrust();
+            HandleRoll();
             HandleYaw();
-        }
-        
-        private void FixedUpdate()
-        {
-            this.transform.Rotate(_moveDirection.x, _moveDirection.y, _moveDirection.z);
-            _playerRigidbody.velocity += _playerRigidbody.velocity * Time.deltaTime * speed;
+            HandlePitch();
         }
 
-        private void HandleAcceleration()
+        private void HandlePitch()
         {
-            _moveDirection = this.transform.forward * _inputManager.accelerate;
-            _moveDirection.Normalize();
-            _moveDirection *= speed;
-            
-            Vector3 moveVelocity = _moveDirection;
-            _playerRigidbody.velocity = moveVelocity;
+            _rb.transform.Rotate(Vector3.right * (Mathf.Clamp(-_inputManager.pitchYaw.y, -1f, 1f) * pitchTorque * Time.deltaTime));
+        }
+
+        private void HandleThrust()
+        {
+            if (_inputManager.thrust > 0.1f || _inputManager.thrust < -0.1f)
+            {
+                float currentThrust = _inputManager.thrust;
+                _rb.AddRelativeForce(Vector3.forward * (_inputManager.thrust * currentThrust * Time.deltaTime));
+                _glide = thrust;
+            }
+            else
+            {
+                _rb.AddRelativeForce(Vector3.forward * (_glide * Time.deltaTime));
+            }
         }
 
         private void HandleYaw()
         {
-            Vector3 targetDirection = _inputManager.directionInput;
-            targetDirection.z = 0;
-            targetDirection.Normalize();
+            _rb.transform.Rotate(Vector3.up * (Mathf.Clamp(_inputManager.pitchYaw.x, -1f,1f) * yawTorque * Time.deltaTime));
+        }
 
-            if (targetDirection == Vector3.zero)
-                targetDirection = transform.forward;
-
-            Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
-            Quaternion playerRotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-
-            transform.rotation = playerRotation;
+        void HandleRoll()
+        {
+            transform.Rotate(0, 0 , -_inputManager.roll * rollTorque * Time.deltaTime);
+//            _rb.transform.Rotate(Vector3.forward * (-_inputManager.roll * rollTorque * Time.deltaTime));
         }
     }
 }

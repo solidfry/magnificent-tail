@@ -12,12 +12,6 @@ namespace Player
             _inputManager = GetComponent<InputManager>();
             _playerMovement = GetComponent<Movement>();
         }
-
-        private void Update()
-        {
-            _inputManager.HandleAllInputs();
-        }
-
         private void FixedUpdate()
         {
             _playerMovement.HandleAllMovement();
