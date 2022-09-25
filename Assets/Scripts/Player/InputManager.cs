@@ -8,7 +8,8 @@ public class InputManager : MonoBehaviour
 
     public float thrust;
     public float roll;
-    public Vector2 pitchYaw;
+    public float pitch;
+    public float yaw;
     
     private void OnEnable()
     {
@@ -18,7 +19,6 @@ public class InputManager : MonoBehaviour
             _playerControls.Flight.Enable();
         }
     }
-    
     private void OnDisable() => _playerControls.Disable();
     
    public void OnThrust(InputAction.CallbackContext context)
@@ -26,9 +26,14 @@ public class InputManager : MonoBehaviour
        thrust = context.ReadValue<float>();
    }
    
-   public void OnLookMovement(InputAction.CallbackContext context)
+   public void OnPitch(InputAction.CallbackContext context)
    {
-       pitchYaw = context.ReadValue<Vector2>();
+       pitch = context.ReadValue<float>();
+   }
+
+   public void OnYaw(InputAction.CallbackContext context)
+   {
+       yaw = context.ReadValue<float>();
    }
    
    public void OnRoll (InputAction.CallbackContext context)

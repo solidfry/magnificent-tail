@@ -46,11 +46,20 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""LookMovement"",
+                    ""name"": ""Pitch"",
                     ""type"": ""PassThrough"",
                     ""id"": ""7a65ffc2-5874-43ed-9f54-f523d41a2460"",
-                    ""expectedControlType"": ""Vector2"",
-                    ""processors"": ""NormalizeVector2"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Yaw"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""55a9da51-ead4-487b-bf9d-c360b8622c63"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
                 }
@@ -79,31 +88,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""Negative"",
-                    ""id"": ""1369fa2f-1c94-4cda-8a13-4371be1070b7"",
-                    ""path"": ""<Keyboard>/a"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""Roll"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
                     ""name"": ""Positive"",
                     ""id"": ""70083caf-4835-4803-8096-511958fd1f17"",
                     ""path"": ""<Keyboard>/rightArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""Roll"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""Positive"",
-                    ""id"": ""0ded9e65-b31e-42e1-9f9a-227d5ebca244"",
-                    ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
@@ -211,26 +198,136 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""a4010861-183d-4be1-8f03-ad016aa4a44e"",
-                    ""path"": ""<Gamepad>/rightStick"",
+                    ""name"": ""Keyboard"",
+                    ""id"": ""f5e8531d-1e9c-45a1-8646-6ea1e8a5c98c"",
+                    ""path"": ""1DAxis"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""LookMovement"",
-                    ""isComposite"": false,
+                    ""action"": ""Yaw"",
+                    ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""8993899d-408d-4f6b-a36d-ac9c88f42d8f"",
-                    ""path"": ""<Mouse>/delta"",
+                    ""name"": ""Negative"",
+                    ""id"": ""e7aa0ded-28c9-4a68-9989-1112c3471878"",
+                    ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""LookMovement"",
+                    ""action"": ""Yaw"",
                     ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Positive"",
+                    ""id"": ""cc5dc6d5-c96a-4a7a-88ea-546598abf257"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Yaw"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""GamePad"",
+                    ""id"": ""320d4f4e-9361-4018-99ad-6b4f2c022510"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Yaw"",
+                    ""isComposite"": true,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""e1caa040-672e-4692-a1cc-5dc967232919"",
+                    ""path"": ""<Gamepad>/rightStick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Yaw"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""698854cb-90f6-4dc3-8d4f-c89e2d2e9915"",
+                    ""path"": ""<Gamepad>/rightStick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Yaw"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""GamePad"",
+                    ""id"": ""0e256c25-1c49-43fb-8f2d-fe6434b92475"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pitch"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""36da9ad1-c7aa-4191-92d6-4f64c3aef65b"",
+                    ""path"": ""<Gamepad>/rightStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Pitch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""4aa23236-8c0f-411c-8d95-4aed5db68158"",
+                    ""path"": ""<Gamepad>/rightStick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Pitch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Keyboard"",
+                    ""id"": ""f6b9bbd8-11c7-4d6d-b11b-b50ba0b7cc31"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pitch"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""cc63625b-ceba-4aae-ad0e-072bd13d0b50"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Pitch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""55179949-4a72-4413-81a2-e303487872c8"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Pitch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         },
@@ -818,7 +915,8 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Flight = asset.FindActionMap("Flight", throwIfNotFound: true);
         m_Flight_Roll = m_Flight.FindAction("Roll", throwIfNotFound: true);
         m_Flight_Thrust = m_Flight.FindAction("Thrust", throwIfNotFound: true);
-        m_Flight_LookMovement = m_Flight.FindAction("LookMovement", throwIfNotFound: true);
+        m_Flight_Pitch = m_Flight.FindAction("Pitch", throwIfNotFound: true);
+        m_Flight_Yaw = m_Flight.FindAction("Yaw", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -892,14 +990,16 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private IFlightActions m_FlightActionsCallbackInterface;
     private readonly InputAction m_Flight_Roll;
     private readonly InputAction m_Flight_Thrust;
-    private readonly InputAction m_Flight_LookMovement;
+    private readonly InputAction m_Flight_Pitch;
+    private readonly InputAction m_Flight_Yaw;
     public struct FlightActions
     {
         private @PlayerControls m_Wrapper;
         public FlightActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Roll => m_Wrapper.m_Flight_Roll;
         public InputAction @Thrust => m_Wrapper.m_Flight_Thrust;
-        public InputAction @LookMovement => m_Wrapper.m_Flight_LookMovement;
+        public InputAction @Pitch => m_Wrapper.m_Flight_Pitch;
+        public InputAction @Yaw => m_Wrapper.m_Flight_Yaw;
         public InputActionMap Get() { return m_Wrapper.m_Flight; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -915,9 +1015,12 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Thrust.started -= m_Wrapper.m_FlightActionsCallbackInterface.OnThrust;
                 @Thrust.performed -= m_Wrapper.m_FlightActionsCallbackInterface.OnThrust;
                 @Thrust.canceled -= m_Wrapper.m_FlightActionsCallbackInterface.OnThrust;
-                @LookMovement.started -= m_Wrapper.m_FlightActionsCallbackInterface.OnLookMovement;
-                @LookMovement.performed -= m_Wrapper.m_FlightActionsCallbackInterface.OnLookMovement;
-                @LookMovement.canceled -= m_Wrapper.m_FlightActionsCallbackInterface.OnLookMovement;
+                @Pitch.started -= m_Wrapper.m_FlightActionsCallbackInterface.OnPitch;
+                @Pitch.performed -= m_Wrapper.m_FlightActionsCallbackInterface.OnPitch;
+                @Pitch.canceled -= m_Wrapper.m_FlightActionsCallbackInterface.OnPitch;
+                @Yaw.started -= m_Wrapper.m_FlightActionsCallbackInterface.OnYaw;
+                @Yaw.performed -= m_Wrapper.m_FlightActionsCallbackInterface.OnYaw;
+                @Yaw.canceled -= m_Wrapper.m_FlightActionsCallbackInterface.OnYaw;
             }
             m_Wrapper.m_FlightActionsCallbackInterface = instance;
             if (instance != null)
@@ -928,9 +1031,12 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Thrust.started += instance.OnThrust;
                 @Thrust.performed += instance.OnThrust;
                 @Thrust.canceled += instance.OnThrust;
-                @LookMovement.started += instance.OnLookMovement;
-                @LookMovement.performed += instance.OnLookMovement;
-                @LookMovement.canceled += instance.OnLookMovement;
+                @Pitch.started += instance.OnPitch;
+                @Pitch.performed += instance.OnPitch;
+                @Pitch.canceled += instance.OnPitch;
+                @Yaw.started += instance.OnYaw;
+                @Yaw.performed += instance.OnYaw;
+                @Yaw.canceled += instance.OnYaw;
             }
         }
     }
@@ -1089,7 +1195,8 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     {
         void OnRoll(InputAction.CallbackContext context);
         void OnThrust(InputAction.CallbackContext context);
-        void OnLookMovement(InputAction.CallbackContext context);
+        void OnPitch(InputAction.CallbackContext context);
+        void OnYaw(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
