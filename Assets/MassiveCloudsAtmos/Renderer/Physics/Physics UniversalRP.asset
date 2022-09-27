@@ -17,7 +17,7 @@ MonoBehaviour:
   sun:
     mode: 1
     rotation: {x: 11.787627, y: 131.57478, z: 83.948944}
-    intensity: 1.2111895
+    intensity: 1.47
     color: {r: 0.97509557, g: 0.27878538, b: 0.12888083, a: 0}
   moon:
     mode: 0
@@ -37,8 +37,8 @@ MonoBehaviour:
       SkyExposure: 1.4899595
       GroundColor: {r: 0.25301468, g: 0.044283837, b: 0, a: 0}
       GroundScattering: 0
-      SunSize: 1
-      SunSizeConvergence: 4.94
+      SunSize: 0.7513634
+      SunSizeConvergence: 5.39
       Saturation: 0.078881055
       AtmosphereThickness: 1.3418851
       Gradation: 0.20982361
@@ -92,15 +92,15 @@ MonoBehaviour:
       godRay: 1
       godRayStartDistance: 100
       shadow: 0.13132863
-      sunShaft: 0.321
+      sunShaft: 0.09867692
     screenBlending: 0
     shaftQuality: 1
     godRayQuality: 0.846
     resolution: 0.082
     fog:
-      groundHeight: -26.398682
-      range: 456.4113
-      density: 0.13265876
+      groundHeight: 34
+      range: 363
+      density: 0.165
       coloring: 0.3817843
       color: {r: 0.78881055, g: 0.11096527, b: 0.105594724, a: 0}
       scattering: 0.09786591

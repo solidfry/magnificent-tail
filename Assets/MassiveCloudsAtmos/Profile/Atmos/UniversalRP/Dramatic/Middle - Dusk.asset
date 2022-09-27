@@ -77,7 +77,7 @@ MonoBehaviour:
     SkyExposure: 1
     GroundColor: {r: 0.3207547, g: 0.056140017, b: 0, a: 0}
     GroundScattering: 0
-    SunSize: 0.495
+    SunSize: 0.82
     SunSizeConvergence: 5.39
     Saturation: 0.1
     AtmosphereThickness: 1.412

@@ -13,30 +13,30 @@ MonoBehaviour:
   m_Name: Cumulus - Middle
   m_EditorClassIdentifier: 
   Sampler:
-    VolumeTexture: {fileID: 11700000, guid: 49f7cc1640cb2da4581356fee10c0019, type: 2}
+    VolumeTexture: {fileID: 11700000, guid: 165d0e1b369d6ed4c8e530d378047a80, type: 2}
     Tiling: {x: 1, y: 1.02}
     Octave: 9
-    Sculpture: -0.73
+    Sculpture: 0.541
     Sculpture2: 0.3
     Sculpture3: -0.24
     Sculpture4: 0.53
     Warp: 0.28
-    Softness: 0.521
+    Softness: 0.485
     NearSoftnessScale: 1
-    Density: 0.346
+    Density: 0.308
     Scale: 9.52
   HorizontalShape:
-    FromHeight: 118.78051
-    ToHeight: 758.1632
-    SoftnessTop: 0.813
-    SoftnessBottom: 0.489
+    FromHeight: 153.9918
+    ToHeight: 1638.4447
+    SoftnessTop: 1
+    SoftnessBottom: 0.147
     Figure: 0.605
     MaxDistance: 23055
   Lighting:
-    Intensity: 1
+    Intensity: 0.577
     Quality: 0.407
-    Scattering: 0.45
-    Shading: 0.642
-    ShadingDistance: 0.539
-    Transparency: 0
-    Mie: 0.078
+    Scattering: 0.511
+    Shading: 0.563
+    ShadingDistance: 0.525
+    Transparency: 0.05
+    Mie: 0.136

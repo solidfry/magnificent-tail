@@ -26,8 +26,8 @@ MonoBehaviour:
     Density: 0.447
     Scale: 10
   HorizontalShape:
-    FromHeight: 4000
-    ToHeight: 4040
+    FromHeight: 3340.2815
+    ToHeight: 3908.451
     SoftnessTop: 1
     SoftnessBottom: 1
     Figure: 0.518
