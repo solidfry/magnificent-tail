@@ -1,5 +1,4 @@
-﻿using System;
-using Events;
+﻿using Events;
 using TMPro;
 using UnityEngine;
 
@@ -12,11 +11,13 @@ namespace UI
         private void OnEnable()
         {
             GameEvents.OnCollectablePickedUp += HandlePickUp;
+            GameEvents.OnTimerZeroEvent += ResetCollectionCount;
         }
-
+        
         private void OnDisable()
         {
             GameEvents.OnCollectablePickedUp -= HandlePickUp;
+            GameEvents.OnTimerZeroEvent -= ResetCollectionCount;
         }
         
         private void HandlePickUp()
@@ -24,8 +25,17 @@ namespace UI
             if (collectionCountText == null) return;
             
             collectionCount++;
-            collectionCountText.text = collectionCount.ToString();
+            SetCollectionText();
         }
+        
+        private void ResetCollectionCount()
+        {
+            collectionCount = 0;
+            SetCollectionText();
+        }
+
+        private void SetCollectionText() => collectionCountText.text = collectionCount.ToString();
+        
 
     }
 }

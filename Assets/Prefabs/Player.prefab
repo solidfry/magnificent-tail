@@ -794,10 +794,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adf1fba6445841d59f37045078d68100, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tailLength: 0
-  tailIncrement: 0.05
+  birthParticle: {fileID: 782696396679293997, guid: b2743e4be3de102448574e7e64ee87aa,
+    type: 3}
+  birthParticleDestroyDelay: 3
   trails:
-  - {fileID: 797596695471958158}
+    tailLength: 0
+    tailIncrement: 0.01
+    trails:
+    - {fileID: 797596695471958158}
 --- !u!114 &308918192506889797
 MonoBehaviour:
   m_ObjectHideFlags: 0

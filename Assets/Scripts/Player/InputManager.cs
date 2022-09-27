@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 
 public class InputManager : MonoBehaviour
 {
-    private PlayerControls _playerControls;
+    private PlayerControls playerControls;
 
     public float thrust;
     public float roll;
@@ -13,32 +13,20 @@ public class InputManager : MonoBehaviour
     
     private void OnEnable()
     {
-        if (_playerControls == null)
+        if (playerControls == null)
         {
-            _playerControls = new PlayerControls();
-            _playerControls.Flight.Enable();
+            playerControls = new PlayerControls();
+            playerControls.Flight.Enable();
         }
     }
-    private void OnDisable() => _playerControls.Disable();
-    
-   public void OnThrust(InputAction.CallbackContext context)
-   {
-       thrust = context.ReadValue<float>();
-   }
-   
-   public void OnPitch(InputAction.CallbackContext context)
-   {
-       pitch = context.ReadValue<float>();
-   }
+    private void OnDisable() => playerControls.Disable();
 
-   public void OnYaw(InputAction.CallbackContext context)
-   {
-       yaw = context.ReadValue<float>();
-   }
-   
-   public void OnRoll (InputAction.CallbackContext context)
-   {
-       roll = context.ReadValue<float>();
-   }
+    #region Input Handling
+    public void OnThrust(InputAction.CallbackContext context) => thrust = context.ReadValue<float>();
+    public void OnPitch(InputAction.CallbackContext context) => pitch = context.ReadValue<float>();
+    public void OnYaw(InputAction.CallbackContext context) => yaw = context.ReadValue<float>();
+    public void OnRoll (InputAction.CallbackContext context) => roll = context.ReadValue<float>();
+
+    #endregion
    
 }

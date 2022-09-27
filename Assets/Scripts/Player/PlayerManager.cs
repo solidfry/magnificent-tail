@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections;
 using Events;
 using UnityEngine;
 
@@ -7,12 +6,12 @@ namespace Player
 {
     public class PlayerManager : MonoBehaviour
     {
-        [SerializeField] private float tailLength;
-        [SerializeField] private float tailIncrement = 0.1f;
-        [SerializeField] private List<TrailRenderer> trails;
         private InputManager inputManager;
         private Movement playerMovement;
-
+        [SerializeField] private GameObject birthParticle;
+        [SerializeField] private float birthParticleDestroyDelay = 3f;
+        [SerializeField] private TrailManager trails = new();
+        
         private void Awake()
         {
             inputManager = GetComponent<InputManager>();
@@ -23,24 +22,39 @@ namespace Player
         {
             playerMovement.HandleAllMovement();
         }
-
+        
         private void OnEnable()
         {
-            GameEvents.OnCollectablePickedUp += HandleTrailLength;
-        }    
+            GameEvents.OnCollectablePickedUp += trails.HandleTrailLength;
+            GameEvents.OnTimerZeroEvent += trails.ResetTrails;
+            GameEvents.OnTimerZeroEvent += Die;
+        }
         
         private void OnDisable()
         {
-            GameEvents.OnCollectablePickedUp -= HandleTrailLength;
+            GameEvents.OnCollectablePickedUp -= trails.HandleTrailLength;
+            GameEvents.OnTimerZeroEvent -= trails.ResetTrails;
+            GameEvents.OnTimerZeroEvent -= Die;
         }
         
-        private void HandleTrailLength()
+        private void Die()
         {
-            tailLength += tailIncrement;
-            foreach (TrailRenderer trail in trails)
-            {
-                trail.time += tailLength;
-            }
+            playerMovement.IsDead = true;
+            Rigidbody rb = GetComponent<Rigidbody>();
+            rb.velocity = Vector3.zero;
+            StartCoroutine(Rebirth());
+        }
+
+        IEnumerator Rebirth()
+        {
+            if (birthParticle == null) yield break;
+            
+            yield return new WaitForSeconds(2);
+            var particle = Instantiate(birthParticle, transform);
+            Destroy(particle, birthParticleDestroyDelay);
+            yield return new WaitForSeconds(1);
+            playerMovement.IsDead = false;
+            GameEvents.OnResetTimerEvent?.Invoke();
         }
     }
 }

@@ -16,19 +16,12 @@ public class Timer : MonoBehaviour
     public bool timerRunning = false;
     [SerializeField]
     private TMP_Text timerText;
-    private void OnEnable()
-    {
-      
-    }
-
-    private void OnDisable()
-    {
- 
-    }
+    
     private void Awake()
     {
         originalTime = timeRemaining;
         DisplayTimer(timeRemaining);
+        StartTimer();
     }
 
     void Update()
@@ -42,6 +35,18 @@ public class Timer : MonoBehaviour
             timerText = GameObject.Find("TimerText").GetComponent<TMP_Text>();
             HandleTimer();
         }
+    }
+
+    private void OnEnable()
+    {
+        GameEvents.OnResetTimerEvent += ResetTimer;
+        GameEvents.OnStartTimerEvent += StartTimer;
+    }
+
+    private void OnDisable()
+    {
+        GameEvents.OnResetTimerEvent -= ResetTimer;
+        GameEvents.OnStartTimerEvent -= StartTimer;
     }
 
     public void StartTimer()
@@ -83,13 +88,13 @@ public class Timer : MonoBehaviour
     public void SetTimerInactive()
     {
         timerRunning = false;
-//        Debug.Log("TimerZeroEvent OCCURED");
-        GameEvents.OnResetTimerEvent?.Invoke();
+        GameEvents.OnTimerZeroEvent?.Invoke();
     }
 
     public void ResetTimer()
     {
         timeRemaining = originalTime;
         timerRunning = false;
+        StartTimer();
     }
 }

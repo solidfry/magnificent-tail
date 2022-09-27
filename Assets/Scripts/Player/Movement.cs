@@ -1,10 +1,11 @@
-﻿using UnityEngine;
+﻿using Unity.VisualScripting;
+using UnityEngine;
 
 namespace Player
 {
     public class Movement : MonoBehaviour
     {
-        private InputManager _inputManager;
+        private InputManager inputManager;
 
         [Header("Handling Settings")] 
         [SerializeField] private float yawTorque = 500f;
@@ -12,16 +13,20 @@ namespace Player
         [SerializeField] private float rollTorque = 1000f;
         [SerializeField] private float thrustMultiplier = 2f; 
         [SerializeField] private float constantThrust = 35f;
-//        private Camera mainCam;
-        private Transform _tr;
-        private Rigidbody _rb;
-    
+        private bool isDead = false;
+        private Transform tr;
+        private Rigidbody rb;
+        public bool IsDead
+        {
+            get => isDead;
+            set => isDead = value;
+        }
+        
         private void Awake()
         {
-//            mainCam = Camera.main;
-            _inputManager = GetComponent<InputManager>();
-            _rb = GetComponent<Rigidbody>();
-            _tr = GetComponent<Transform>();
+            inputManager = GetComponent<InputManager>();
+            rb = GetComponent<Rigidbody>();
+            tr = GetComponent<Transform>();
         }
 
         public void HandleAllMovement()
@@ -32,31 +37,33 @@ namespace Player
             HandlePitch();
         }
 
-        private void HandlePitch()
-        {
-            _rb.transform.Rotate(Mathf.Clamp(_inputManager.pitch * pitchTorque * Time.deltaTime, -1f, 1f), 0, 0);
-        }
+        private void HandlePitch() => 
+            rb.transform.Rotate(Mathf.Clamp(inputManager.pitch * pitchTorque * Time.deltaTime, -1f, 1f), 0, 0);
 
         private void HandleThrust()
         {
-            if (_inputManager.thrust > 0.1f || _inputManager.thrust < -0.1f)
+            if (isDead) return; 
+            
+            if (inputManager.thrust > 0.1f)
             {
-                _rb.AddForce(_tr.forward * (constantThrust * thrustMultiplier)) ;
+                rb.AddForce(tr.forward * (constantThrust * thrustMultiplier)) ;
+            }
+            else if (inputManager.thrust < -0.1f)
+            {
+                rb.AddForce(tr.forward * (constantThrust / thrustMultiplier));
             }
             else
             {
-                _rb.AddForce(_tr.forward * constantThrust);
+                rb.AddForce(tr.forward * constantThrust);
             }
         }
 
-        private void HandleYaw()
-        {
-            _rb.transform.Rotate(0, Mathf.Clamp(_inputManager.yaw, -1f,1f) * yawTorque * Time.deltaTime,0);
-        }
+        private void HandleYaw() =>
+            rb.transform.Rotate(0, Mathf.Clamp(inputManager.yaw, -1f,1f) * yawTorque * Time.deltaTime,0);
+        
 
-        void HandleRoll()
-        {
-            _rb.transform.Rotate(0, 0 , -_inputManager.roll * rollTorque * Time.deltaTime);
-        }
+        void HandleRoll() =>
+            rb.transform.Rotate(0, 0 , -inputManager.roll * rollTorque * Time.deltaTime);
+        
     }
 }

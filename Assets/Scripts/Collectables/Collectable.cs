@@ -24,7 +24,8 @@ namespace Collectables
             {
                 pickUpParticlePrefab.SetActive(true);
                 GameEvents.OnCollectablePickedUp?.Invoke();
-
+                GameEvents.OnResetTimerEvent?.Invoke();
+                
                 if (listOfClips)
                 {
                     var clipToPlay = listOfClips.GetRandomClip();
