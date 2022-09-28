@@ -14,7 +14,7 @@ GameObject:
   m_Layer: 0
   m_Name: Collectable
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -62,9 +62,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pickUpParticlePrefab: {fileID: 1118444579709004741}
   initialParticlePrefab: {fileID: 1118444579124173904}
+  initialParticleTransform: {x: 6, y: 6, z: 6}
   smoothTime: 0.4
   destroyTime: 1
   listOfClips: {fileID: 11400000, guid: 14d80574428f0344a82c58a96adbc66d, type: 2}
+  velocity: {x: 0, y: 0, z: 0}
 --- !u!1001 &1118444579124314246
 PrefabInstance:
   m_ObjectHideFlags: 0

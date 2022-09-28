@@ -1,4 +1,6 @@
-﻿using Events;
+﻿using System;
+using System.Collections;
+using Events;
 using ScriptableObjects;
 using UnityEngine;
 
@@ -7,15 +9,21 @@ namespace Collectables
     public class Collectable : MonoBehaviour
     {
         [SerializeField] private GameObject pickUpParticlePrefab;
-        [SerializeField] private GameObject initialParticlePrefab;
-        [SerializeField] private float smoothTime = 0.4f;
+        [SerializeField] public GameObject initialParticlePrefab;
+        [SerializeField] private Vector3 initialParticleTransform = new(6,6,6); 
+        [SerializeField] public float smoothTime = 0.4f;
         [SerializeField] private float destroyTime = 1f;
         [SerializeField] private AudioList listOfClips;
+        public Vector3 velocity = Vector3.zero;
         
-        Vector3 velocity = Vector3.zero;
         private void Awake()
         {
             pickUpParticlePrefab.SetActive(false);
+        }
+
+        private void OnEnable()
+        {
+            initialParticlePrefab.transform.localScale = initialParticleTransform;
         }
 
         private void OnTriggerEnter(Collider other)
@@ -32,9 +40,17 @@ namespace Collectables
                     GameEvents.OnAudioCollisionEvent?.Invoke(clipToPlay);
                 }
 
-                initialParticlePrefab.transform.localScale = Vector3.SmoothDamp(transform.localScale, velocity, ref velocity, smoothTime);
-                Destroy(this.gameObject, destroyTime);
+                initialParticlePrefab.transform.localScale = Vector3.Lerp(transform.localScale, velocity, smoothTime);
+                StartCoroutine(SetInactiveWithDelay(destroyTime));
             }
         }
+
+        IEnumerator SetInactiveWithDelay(float delay = 1f)
+        {
+            yield return new WaitForSeconds(delay);
+            gameObject.SetActive(false);
+            pickUpParticlePrefab.SetActive(false);
+        }
+        
     }
 }

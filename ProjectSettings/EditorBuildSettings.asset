@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Proto.unity
     guid: 99c9720ab356a0642a771bea13969a05
   m_configObjects:
-    com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 838d0e561eb891a43a653c5faeebd1cb,
+    com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: ec69c2ab2e5ec1c4c8dbf812f8316399,
       type: 2}
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000,
       guid: 224be9e093b9d26449090cb5a228a5f4, type: 2}

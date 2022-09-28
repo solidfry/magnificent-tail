@@ -68,7 +68,7 @@ public class Timer : MonoBehaviour
             {
                 timeRemaining = 0;
                 SetTimerInactive();
-                Debug.Log("Timer is inactive now");
+//                Debug.Log("Timer is inactive now");
             }
         }
 
