@@ -11,32 +11,32 @@ namespace Player
         [SerializeField] private GameObject birthParticle;
         [SerializeField] private float birthParticleDestroyDelay = 3f;
         [SerializeField] private TrailManager trails = new();
-        
+
         private void Awake()
         {
             inputManager = GetComponent<InputManager>();
             playerMovement = GetComponent<Movement>();
         }
-        
+
         private void FixedUpdate()
         {
             playerMovement.HandleAllMovement();
         }
-        
+
         private void OnEnable()
         {
             GameEvents.OnCollectablePickedUp += trails.HandleTrailLength;
             GameEvents.OnTimerZeroEvent += trails.ResetTrails;
             GameEvents.OnTimerZeroEvent += Die;
         }
-        
+
         private void OnDisable()
         {
             GameEvents.OnCollectablePickedUp -= trails.HandleTrailLength;
             GameEvents.OnTimerZeroEvent -= trails.ResetTrails;
             GameEvents.OnTimerZeroEvent -= Die;
         }
-        
+
         private void Die()
         {
             playerMovement.IsDead = true;
@@ -48,7 +48,7 @@ namespace Player
         IEnumerator Rebirth()
         {
             if (birthParticle == null) yield break;
-            
+
             yield return new WaitForSeconds(2);
             var particle = Instantiate(birthParticle, transform);
             Destroy(particle, birthParticleDestroyDelay);

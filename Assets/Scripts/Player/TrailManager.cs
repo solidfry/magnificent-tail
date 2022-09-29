@@ -11,7 +11,8 @@ namespace Player
         [SerializeField] private float tailLength = 0.1f;
         [SerializeField] private float tailIncrement = 0.05f;
         [SerializeField] public List<TrailRenderer> trails;
-        
+
+
         public void HandleTrailLength()
         {
             tailLength += tailIncrement;
@@ -21,12 +22,12 @@ namespace Player
         public void ResetTrails()
         {
             tailLength = tailStartingLength;
-            ApplyTrailLength(reset:true);
+            ApplyTrailLength(reset: true);
         }
 
         void ApplyTrailLength(bool reset = false)
         {
-            if(reset == false)
+            if (reset == false)
             {
                 foreach (TrailRenderer trail in trails)
                 {
